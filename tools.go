@@ -16,7 +16,7 @@ const randomStringSource = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
 // Tools is the type used to instantiate this module. Any variable of this type will have access
 // to all the methods with the reciever *Tools
 type Tools struct {
-	MaxFileSize int
+	MaxFileSize      int
 	AllowedFileTypes []string
 }
 
@@ -101,10 +101,9 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 				} else {
 					uploadedFile.NewFileName = hdr.Filename
 				}
-				
+
 				var outfile *os.File
 				defer outfile.Close()
-
 
 				if outfile, err = os.Create(filepath.Join(uploadDir, uploadedFile.NewFileName)); err != nil {
 					return nil, err
@@ -125,5 +124,6 @@ func (t *Tools) UploadFiles(r *http.Request, uploadDir string, rename ...bool) (
 			}
 		}
 	}
+	fmt.Println("about to return from tools.go")
 	return uploadedFiles, nil
 }
